@@ -1,6 +1,7 @@
 require 'pry'
 require 'csv'
 require 'date'
+require 'time'
 require 'active_support/all'
 
 class NormalizeCsv
@@ -24,6 +25,11 @@ class NormalizeCsv
 
     def handleName(name)
         name.mb_chars.upcase.to_s
+    end 
+
+    def handleDuration(time)
+        parsed_time = Time.parse(time)
+        "%10.3f" % parsed_time.to_f 
     end 
 
     private 

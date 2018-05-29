@@ -91,5 +91,18 @@ describe NormalizeCsv do
 
             expect(normalizeCsv.handleName(name)).to eq('株式会社スタジオジブリ')
         end  
+    end
+
+    context('handleDuration') do 
+        it("it converts time to floating point seconds format w/ 3 decimal places") do
+            time = '1:23:32.123'
+
+            expect(normalizeCsv.handleDuration(time)).to eq('1527578612.123')
+        end  
+        # it("handles hours out of range") do
+        #     time = '31:23:32.123'
+
+        #     expect(normalizeCsv.handleDuration(time)).to eq('MONKEY ALBERTO')
+        # end  
     end 
 end 
