@@ -70,4 +70,26 @@ describe NormalizeCsv do
             expect(normalizeCsv.handleZip(zip).length).to eq(5)
         end  
     end 
+
+    context('handleName') do 
+        it("it capitalizes name") do
+            name = 'Monkey Alberto'
+
+            expect(normalizeCsv.handleName(name)).to eq('MONKEY ALBERTO')
+        end  
+     
+        it("it capitalizes letters with accents") do
+            name = 'Résumé Ron'
+            name2 = 'Superman übertan'
+
+            expect(normalizeCsv.handleName(name)).to eq('RÉSUMÉ RON')
+            expect(normalizeCsv.handleName(name2)).to eq('SUPERMAN ÜBERTAN')
+        end  
+    
+        it("it capitalizes non-ASCII letters") do
+            name = '株式会社スタジオジブリ'
+
+            expect(normalizeCsv.handleName(name)).to eq('株式会社スタジオジブリ')
+        end  
+    end 
 end 
