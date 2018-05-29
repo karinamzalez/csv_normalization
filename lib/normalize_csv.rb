@@ -7,8 +7,9 @@ require 'active_support/all'
 class NormalizeCsv
     attr_reader :csv_path 
 
-    def initialize(stdin = './sample.csv')
+    def initialize(stdin = './sample.csv', stdin2 = nil)
         @csv_path = stdin
+        @output_path = stdin2 
     end 
 
     def run()
