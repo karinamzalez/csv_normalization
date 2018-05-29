@@ -14,6 +14,13 @@ class NormalizeCsv
         eastern_time.iso8601
     end
 
+    def handleZip(zip)
+        if zip.length != 5 
+            newZip = 'not 5 digits'
+        end
+        newZip ||= zip 
+    end
+
     private 
 
     def convert_pacific_to_eastern(time)
