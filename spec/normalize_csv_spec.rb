@@ -61,5 +61,13 @@ describe NormalizeCsv do
             expect(normalizeCsv.handleZip(zip)).to eq('00012')
             expect(normalizeCsv.handleZip(zip).length).to eq(5)
         end  
+        
+        it("it handles zips greater than 5 digits") do
+            # specifically handles zip + 4 codes 
+            zip = '12345+1234'
+
+            expect(normalizeCsv.handleZip(zip)).to eq('12345')
+            expect(normalizeCsv.handleZip(zip).length).to eq(5)
+        end  
     end 
 end 

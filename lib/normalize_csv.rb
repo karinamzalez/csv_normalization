@@ -16,7 +16,7 @@ class NormalizeCsv
 
     def handleZip(zip)
         if zip.length != 5 
-            newZip = 'not 5 digits'
+            then newZip = zip.length < 5 && zip.rjust(5,"0")[0..4] 
         end
         newZip ||= zip 
     end
