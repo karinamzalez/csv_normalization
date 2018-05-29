@@ -109,8 +109,9 @@ describe NormalizeCsv do
 
     context('run') do 
         it("outputs normalized csv via standard output if file is specified") do
-            output = normalizeCsv.run()
-            first_row = [[
+            normalizer = NormalizeCsv.new('./sample.csv', './output.csv')
+            output = CSV.read('./output.csv')
+            first_row = [
                             "2011-01-01T15:00:01-05:00", 
                             "This Is Not An Address, BusyTown, BT", 
                             "94121", 
@@ -119,9 +120,26 @@ describe NormalizeCsv do
                             "1527573600.000", 
                             "1527578612.1231527573600.000", 
                             "I like Emoji! 🍏🍎😍"
-                        ]]
+                        ]
 
-            expect(CSV.parse(output[1].to_s)).to eq(first_row)
+            expect(output[1]).to eq(first_row)
+        end  
+
+        it("outputs handles invalid utf-8 and logs dropping of row") do
+            normalizer = NormalizeCsv.new('./sample-with-broken-utf8.csv', './output.csv')
+            output = CSV.read('./output.csv')
+            first_row = [
+                            "2011-01-01T15:00:01-05:00", 
+                            "This Is Not An Address, BusyTown, BT", 
+                            "94121", 
+                            "MARY 1", 
+                            "1527578612.123", 
+                            "1527573600.000", 
+                            "1527578612.1231527573600.000", 
+                            "I like Emoji! 🍏🍎😍"
+                        ]
+
+            expect(output[1]).to eq(first_row)
         end  
     end 
 end 
