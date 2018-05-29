@@ -46,4 +46,13 @@ describe NormalizeCsv do
             expect(normalizeCsv.handleTimestamp(time)).to eq('2014-03-12T15:00:00-05:00')
         end 
     end
+
+    context('handleZip') do 
+        it("it doesn't do anything if zip is 5 digits") do
+            zip = '12345'
+
+            expect(normalizeCsv.handleZip(zip)).to eq('12345')
+            expect(normalizeCsv.handleZip(zip).length).to eq(5)
+        end  
+    end 
 end 
