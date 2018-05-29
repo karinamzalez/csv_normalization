@@ -1,6 +1,7 @@
 require 'pry'
 require 'csv'
 require 'date'
+require 'active_support/all'
 
 class NormalizeCsv
     attr_reader :csv_path 
