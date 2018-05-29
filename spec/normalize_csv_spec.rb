@@ -39,5 +39,11 @@ describe NormalizeCsv do
             
             expect(iso_formatted_time).to eq('2011-04-01T14:00:00-05:00')
         end
+
+        it 'handles invalid dates' do 
+            time = '3/12/14 12:00:00 AM'
+
+            expect(normalizeCsv.handleTimestamp(time)).to eq('2014-03-12T15:00:00-05:00')
+        end 
     end
 end 
