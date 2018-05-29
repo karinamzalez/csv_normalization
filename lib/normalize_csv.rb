@@ -11,6 +11,24 @@ class NormalizeCsv
         @csv_path = stdin
     end 
 
+    def run()
+        output = []
+        CSV.foreach(@csv_path, headers: true, header_converters: :symbol, invalid: :replace) do |row|
+            raise "Deleting row #{row} due to invalid data" unless row.mb_chars.tidy_bytes
+            row[:timestamp] = handleTimestamp(row[:timestamp])  
+            row[:zip] = handleZip(row[:zip])
+            row[:fullname] = handleName(row[:fullname])
+            row[:fooduration] = handleDuration(row[:fooduration])
+            row[:barduration] = handleDuration(row[:barduration])
+            row[:totalduration] = row[:fooduration] + row[:barduration]
+            row[:notes] = row[:notes]
+            output << row
+            rescue => e
+                STDERR.puts e
+        end
+        write_csv(output)
+    end
+
     def handleTimestamp(timestamp)
         eastern_time = convert_pacific_to_eastern(timestamp)
         eastern_time.iso8601
