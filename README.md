@@ -30,10 +30,10 @@ _This normalizer will work best using Ruby version 2.3.0 or higher._
 - run `bundle install` 
 
 ## To normalize CSVs:
-From the root directory, run `ruby run_normalizer.rb`. By default a `sample.csv` file will be parsed and outputted via `stdout`. You can specify a file to parse by running `ruby run_normalizer.rb {path-to-csv}` and likewise, you can specify an output file by running `ruby run_normalizer.rb {path-to-csv} output.csv`. 
+From the root directory, run `ruby run_normalizer.rb`. By default a `sample.csv` file will be parsed and outputted via `stdout`. You can specify a file to parse by running `ruby run_normalizer.rb {path-to-csv}` and likewise, you can specify an output file by running `ruby run_normalizer.rb {path-to-csv} output.csv`. Example output: ![test output](example-output.png)
 
 ## Testing:
 
 Testing tool: RSpec 
-To run tests run `rspec` from root directory. Example output: ![test output](test-output.png)
+To run tests run `rspec` from root directory. Example test output: ![test output](test-output.png)
 
