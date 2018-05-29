@@ -21,6 +21,10 @@ class NormalizeCsv
         newZip ||= zip 
     end
 
+    def handleName(name)
+        name.mb_chars.upcase.to_s
+    end 
+
     private 
 
     def convert_pacific_to_eastern(time)
