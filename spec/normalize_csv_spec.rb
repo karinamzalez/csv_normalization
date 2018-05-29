@@ -54,5 +54,12 @@ describe NormalizeCsv do
             expect(normalizeCsv.handleZip(zip)).to eq('12345')
             expect(normalizeCsv.handleZip(zip).length).to eq(5)
         end  
+
+        it("it uses 0 as prefix for zips less than 5 digits") do
+            zip = '12'
+
+            expect(normalizeCsv.handleZip(zip)).to eq('00012')
+            expect(normalizeCsv.handleZip(zip).length).to eq(5)
+        end  
     end 
 end 
