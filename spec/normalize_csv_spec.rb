@@ -105,4 +105,15 @@ describe NormalizeCsv do
         #     expect(normalizeCsv.handleDuration(time)).to eq('MONKEY ALBERTO')
         # end  
     end 
+
+    context('run') do 
+        it("it converts time to floating point seconds format w/ 3 decimal places") do
+            expect(normalizeCsv.run()).to eq('1527578612.123')
+        end  
+        # it("handles hours out of range") do
+        #     time = '31:23:32.123'
+
+        #     expect(normalizeCsv.handleDuration(time)).to eq('MONKEY ALBERTO')
+        # end  
+    end 
 end 

@@ -34,6 +34,17 @@ class NormalizeCsv
 
     private 
 
+    def write_csv(rows) 
+        io = @output_path ? File.open(@output_path, 'w+') : $stdout.dup
+        CSV(io) do |csv|
+            rows.each do |row|
+                csv << row
+            end
+        end
+        ensure
+        io.close
+    end 
+
     def convert_pacific_to_eastern(time)
         parsed_time = DateTime.strptime(time + " PST", '%m/%d/%y %H:%M:%S %z')
         # convert from pacific (-08:00), to eastern (-05:00) = (+03:00)
