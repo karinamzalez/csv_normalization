@@ -14,8 +14,8 @@ class NormalizeCsv
 
     def run()
         output = []
-        CSV.foreach(@csv_path, headers: true, header_converters: :symbol, invalid: :replace) do |row|
-            raise "Deleting row #{row} due to invalid data" unless row.mb_chars.tidy_bytes
+        CSV.foreach(@csv_path, headers: true, header_converters: :symbol, encoding: 'utf-8:utf-8') do |row|
+            raise "Deleting row #{row} due to invalid data" unless row.to_s.mb_chars.tidy_bytes
             row[:timestamp] = handleTimestamp(row[:timestamp])  
             row[:zip] = handleZip(row[:zip])
             row[:fullname] = handleName(row[:fullname])

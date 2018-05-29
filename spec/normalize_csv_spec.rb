@@ -1,5 +1,6 @@
 require './lib/normalize_csv'
 require 'pry'
+require 'csv'
 
 describe NormalizeCsv do 
     let(:normalizeCsv) { described_class.new() }
@@ -107,8 +108,20 @@ describe NormalizeCsv do
     end 
 
     context('run') do 
-        it("outputs normalized csv via standard output if not file is specified") do
-            expect(normalizeCsv.run()).to eq('1527578612.123')
+        it("outputs normalized csv via standard output if file is specified") do
+            output = normalizeCsv.run()
+            first_row = [[
+                            "2011-01-01T15:00:01-05:00", 
+                            "This Is Not An Address, BusyTown, BT", 
+                            "94121", 
+                            "MARY 1", 
+                            "1527578612.123", 
+                            "1527573600.000", 
+                            "1527578612.1231527573600.000", 
+                            "I like Emoji! 🍏🍎😍"
+                        ]]
+
+            expect(CSV.parse(output[1].to_s)).to eq(first_row)
         end  
     end 
 end 
